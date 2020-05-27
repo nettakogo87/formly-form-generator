@@ -2,3 +2,39 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pad {
+  &-xs {
+    padding: 5px;
+  }
+  &-s {
+    padding: 10px;
+  }
+  &-m {
+    padding: 15px;
+  }
+  &-l {
+    padding: 20px;
+  }
+  &-xl {
+    padding: 25px;
+  }
+}
+
+.mr {
+  &-xs {
+    margin: 5px;
+  }
+  &-s {
+    margin: 10px;
+  }
+  &-m {
+    margin: 15px;
+  }
+  &-l {
+    margin: 20px;
+  }
+  &-xl {
+    margin: 25px;
+  }
+}
