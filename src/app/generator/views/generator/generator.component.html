@@ -1,5 +1,18 @@
-<div fxLayout="column" fxFlexFill>
-  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
-
-  </div>
+<div fxLayout="column" fxFlexFill class="background">
+  <as-split unit="percent" [direction]="direction" #split="asSplit">
+    <as-split-area size="50" #area1="asSplitArea">
+      <div class="area">
+        <h2>Generator</h2>
+        <app-code-pan>
+        </app-code-pan>
+      </div>
+    </as-split-area>
+    <as-split-area size="50" #area2="asSplitArea">
+      <div class="area">
+        <h2>Preview</h2>
+        <app-preview>
+        </app-preview>
+      </div>
+    </as-split-area>
+  </as-split>
 </div>

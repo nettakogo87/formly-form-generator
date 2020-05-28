@@ -10,6 +10,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 
 import { MaterialModule } from './material.module';
+import { AngularSplitModule } from 'angular-split';
 
 
 @NgModule({
@@ -28,6 +29,9 @@ import { MaterialModule } from './material.module';
 
     // Material
     MaterialModule,
+
+    // Other
+    AngularSplitModule.forChild(),
   ],
   exports: [
     CommonModule,
@@ -43,6 +47,9 @@ import { MaterialModule } from './material.module';
 
     // Material
     MaterialModule,
+
+    // Other
+    AngularSplitModule,
   ],
 })
 export class SharedModule {
