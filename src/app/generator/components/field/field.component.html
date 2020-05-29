@@ -1,7 +1,16 @@
 <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="pad-b-s">
   <div fxLayout="column">
-    <span>Key: {{field?.key}}</span>
-    <span>Label: {{field?.templateOptions?.label}}</span>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout="column">
+        <span>Key: {{field?.key}}</span>
+      </div>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span> Label: {{field?.templateOptions?.label}}, </span>
+          <span> Type: {{field?.type}}, </span>
+        </div>
+      </div>
+    </div>
   </div>
   <div fxLayout="column">
     <div fxLayout="row">

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>
+  Edit input
+  <button mat-icon-button (click)="dialogRef.close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h1>
+<div mat-dialog-content>
+  <app-edit-checkbox
+    [field]="field"
+    (saveField)="edit($event)">
+  </app-edit-checkbox>
+</div>

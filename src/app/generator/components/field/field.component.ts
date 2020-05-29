@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { EditInputDialogComponent } from '../../containers/edit-input-dialog/edit-input-dialog.component';
 import { EditSelectDialogComponent } from '../../containers/edit-select-dialog/edit-select-dialog.component';
+import { EditCheckboxDialogComponent } from '../../containers/edit-checkbox-dialog/edit-checkbox-dialog.component';
 
 @Component({
   selector: 'app-field',
@@ -37,7 +38,7 @@ export class FieldComponent implements OnDestroy {
     switch (this.field.type) {
       case 'input':
         this.dialog.open(EditInputDialogComponent, {
-          width: '250px',
+          width: '500px',
           data: { field: this.field },
         })
           .afterClosed()
@@ -52,6 +53,21 @@ export class FieldComponent implements OnDestroy {
         break;
       case 'select':
         this.dialog.open(EditSelectDialogComponent, {
+          width: '500px',
+          data: { field: this.field },
+        })
+          .afterClosed()
+          .pipe(
+            takeUntil(this._destroyed$),
+          )
+          .subscribe((field: FormlyFieldConfig) => {
+            if (field) {
+              this.edit(field);
+            }
+          });
+        break;
+      case 'checkbox':
+        this.dialog.open(EditCheckboxDialogComponent, {
           width: '500px',
           data: { field: this.field },
         })

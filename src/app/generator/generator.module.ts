@@ -11,6 +11,8 @@ import { FieldComponent } from './components/field/field.component';
 import { EditInputDialogComponent } from './containers/edit-input-dialog/edit-input-dialog.component';
 import { EditSelectComponent } from './components/edit-select/edit-select.component';
 import { EditSelectDialogComponent } from './containers/edit-select-dialog/edit-select-dialog.component';
+import { EditCheckboxComponent } from './components/edit-checkbox/edit-checkbox.component';
+import { EditCheckboxDialogComponent } from './containers/edit-checkbox-dialog/edit-checkbox-dialog.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { EditSelectDialogComponent } from './containers/edit-select-dialog/edit-
     EditInputDialogComponent,
     EditSelectComponent,
     EditSelectDialogComponent,
+    EditCheckboxComponent,
+    EditCheckboxDialogComponent,
   ],
   imports: [
     GeneratorRoutingModule,
