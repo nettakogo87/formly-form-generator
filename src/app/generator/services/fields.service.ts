@@ -22,11 +22,11 @@ export class FieldsService {
     this._fields$.next(fields);
     localStorage.setItem(
       'fields',
-      fields.toString(),
+      JSON.stringify(fields),
     );
   }
 
   public getFields(): FormlyFieldConfig[] {
-    return this._fields$.value;
+    return this._fields$.value.slice();
   }
 }

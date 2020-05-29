@@ -1,3 +1,12 @@
+<div fxLayout="row" class="pad-b-l">
+  <button
+    *ngIf="fields.length > 0"
+    type="button"
+    mat-raised-button color="warn" (click)="clear()">
+    Clear Preview
+  </button>
+</div>
+
 <div fxLayout="row">
   <div fxLayout="column">
     <form [formGroup]="form" (ngSubmit)="submit()">
@@ -7,7 +16,10 @@
         [options]="options"
         [form]="form">
       </formly-form>
+      <button type="submit" color="primary" mat-raised-button>Submit</button>
     </form>
   </div>
 </div>
+
+
 

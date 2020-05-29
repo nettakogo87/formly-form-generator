@@ -1,7 +1,7 @@
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 import { FormGroup } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -24,7 +24,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
 
   private _destroyed$ = new Subject();
 
-  constructor(private _fieldService: FieldsService) {}
+  constructor(private _fieldService: FieldsService, private readonly _cdr: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this._fieldService.fields$
@@ -33,6 +33,10 @@ export class PreviewComponent implements OnInit, OnDestroy {
       )
       .subscribe((fields: FormlyFieldConfig[]) => {
         this.fields = fields;
+        if (this.options.resetModel) {
+          this.options.resetModel();
+        }
+        this._cdr.detectChanges();
       });
   }
 
@@ -43,5 +47,10 @@ export class PreviewComponent implements OnInit, OnDestroy {
 
   public submit(): void {
 
+  }
+
+  public clear(): void {
+    this.fields = [];
+    this._cdr.detectChanges();
   }
 }

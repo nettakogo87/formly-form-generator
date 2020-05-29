@@ -13,6 +13,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .pad {
+  &-b {
+    &-xs {
+      padding-bottom: 5px;
+    }
+    &-s {
+      padding-bottom: 10px;
+    }
+    &-m {
+      padding-bottom: 15px;
+    }
+    &-l {
+      padding-bottom: 20px;
+    }
+    &-xl {
+      padding-bottom: 25px;
+    }
+  }
   &-xs {
     padding: 5px;
   }
