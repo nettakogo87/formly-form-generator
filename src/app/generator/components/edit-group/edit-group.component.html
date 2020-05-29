@@ -19,9 +19,22 @@
       <input matInput formControlName="className">
     </mat-form-field>
   </div>
+  <div fxLayout="row" class="pad-s" formArrayName="wrappers">
+    <div fxLayout="column">
+      <div *ngFor="let wrapper of wrappers.controls; let i = index">
+        <mat-form-field>
+          <mat-label>Wrapper {{i}}</mat-label>
+          <input matInput [formControlName]="i">
+        </mat-form-field>
+      </div>
+      <button type="button" mat-icon-button color="warn" (click)="addWrapper()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
   <div fxLayout="row" class="pad-s">
     <button type="submit" color="warn" mat-raised-button>
-      save checkbox
+      save group
     </button>
   </div>
 </form>

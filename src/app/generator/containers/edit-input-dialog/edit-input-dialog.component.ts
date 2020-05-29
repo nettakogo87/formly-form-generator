@@ -18,7 +18,7 @@ export class EditInputDialogComponent {
     this.field = this.data.field;
   }
 
-  public edit(field: EditInputDialogComponent): void {
+  public edit(field: FormlyFieldConfig): void {
     this.dialogRef.close(field);
   }
 }

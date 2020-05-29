@@ -12,9 +12,11 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { MaterialModule } from './material.module';
 import { AngularSplitModule } from 'angular-split';
 
+import { WrapperPanelComponent } from './components/wrapper-panel/wrapper-panel.component';
+
 
 @NgModule({
-  declarations: [],
+  declarations: [WrapperPanelComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,6 +29,9 @@ import { AngularSplitModule } from 'angular-split';
     FormlyModule.forChild({
       validationMessages: [
         { name: 'required', message: 'This field is required' },
+      ],
+      wrappers: [
+        { name: 'panel', component: WrapperPanelComponent },
       ],
     }),
     FormlyMaterialModule,

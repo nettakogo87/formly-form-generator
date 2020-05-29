@@ -9,6 +9,9 @@
     <mat-tab label="Checkbox">
       <app-edit-checkbox (saveField)="add($event)"></app-edit-checkbox>
     </mat-tab>
+    <mat-tab label="Group">
+      <app-edit-group (saveField)="add($event)"></app-edit-group>
+    </mat-tab>
   </mat-tab-group>
 
   <button mat-fab color="primary" (click)="isOpened = false">

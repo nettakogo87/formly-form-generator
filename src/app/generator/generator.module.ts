@@ -13,6 +13,8 @@ import { EditSelectComponent } from './components/edit-select/edit-select.compon
 import { EditSelectDialogComponent } from './containers/edit-select-dialog/edit-select-dialog.component';
 import { EditCheckboxComponent } from './components/edit-checkbox/edit-checkbox.component';
 import { EditCheckboxDialogComponent } from './containers/edit-checkbox-dialog/edit-checkbox-dialog.component';
+import { EditGroupComponent } from './components/edit-group/edit-group.component';
+import { EditGroupDialogComponent } from './containers/edit-group-dialog/edit-group-dialog.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { EditCheckboxDialogComponent } from './containers/edit-checkbox-dialog/e
     EditSelectDialogComponent,
     EditCheckboxComponent,
     EditCheckboxDialogComponent,
+    EditGroupComponent,
+    EditGroupDialogComponent,
   ],
   imports: [
     GeneratorRoutingModule,

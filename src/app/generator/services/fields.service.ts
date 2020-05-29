@@ -29,4 +29,8 @@ export class FieldsService {
   public getFields(): FormlyFieldConfig[] {
     return this._fields$.value.slice();
   }
+
+  public clear(): void {
+    localStorage.removeItem('fields');
+  }
 }

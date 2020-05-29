@@ -43,6 +43,6 @@ export class CodePanComponent {
   }
 
   public clear(): void {
-    this._fieldService.setFields([]);
+    this._fieldService.clear();
   }
 }
