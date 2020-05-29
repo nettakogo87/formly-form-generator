@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { EditInputDialogComponent } from '../../containers/edit-input-dialog/edit-input-dialog.component';
+import { EditSelectDialogComponent } from '../../containers/edit-select-dialog/edit-select-dialog.component';
 
 @Component({
   selector: 'app-field',
@@ -14,7 +15,7 @@ import { EditInputDialogComponent } from '../../containers/edit-input-dialog/edi
 export class FieldComponent implements OnDestroy {
 
   @Input()
-  public field;
+  public field: FormlyFieldConfig;
 
   @Output()
   public editField = new EventEmitter<FormlyFieldConfig>();
@@ -33,19 +34,38 @@ export class FieldComponent implements OnDestroy {
   }
 
   public openEdit(): void {
-    this.dialog.open(EditInputDialogComponent, {
-      width: '250px',
-      data: { field: this.field },
-    })
-    .afterClosed()
-    .pipe(
-      takeUntil(this._destroyed$),
-    )
-    .subscribe((field: FormlyFieldConfig) => {
-      if (field) {
-        this.edit(field);
-      }
-    });
+    switch (this.field.type) {
+      case 'input':
+        this.dialog.open(EditInputDialogComponent, {
+          width: '250px',
+          data: { field: this.field },
+        })
+          .afterClosed()
+          .pipe(
+            takeUntil(this._destroyed$),
+          )
+          .subscribe((field: FormlyFieldConfig) => {
+            if (field) {
+              this.edit(field);
+            }
+          });
+        break;
+      case 'select':
+        this.dialog.open(EditSelectDialogComponent, {
+          width: '500px',
+          data: { field: this.field },
+        })
+          .afterClosed()
+          .pipe(
+            takeUntil(this._destroyed$),
+          )
+          .subscribe((field: FormlyFieldConfig) => {
+            if (field) {
+              this.edit(field);
+            }
+          });
+        break;
+    }
   }
 
   public edit(item: FormlyFieldConfig): void {

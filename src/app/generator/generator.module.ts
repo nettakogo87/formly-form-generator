@@ -9,6 +9,8 @@ import { EditInputComponent } from './components/edit-input/edit-input.component
 import { AddFieldComponent } from './components/add-field/add-field.component';
 import { FieldComponent } from './components/field/field.component';
 import { EditInputDialogComponent } from './containers/edit-input-dialog/edit-input-dialog.component';
+import { EditSelectComponent } from './components/edit-select/edit-select.component';
+import { EditSelectDialogComponent } from './containers/edit-select-dialog/edit-select-dialog.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { EditInputDialogComponent } from './containers/edit-input-dialog/edit-in
     FieldComponent,
     EditInputComponent,
     EditInputDialogComponent,
+    EditSelectComponent,
+    EditSelectDialogComponent,
   ],
   imports: [
     GeneratorRoutingModule,

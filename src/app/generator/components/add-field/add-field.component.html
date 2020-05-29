@@ -3,16 +3,19 @@
     <mat-tab label="Input">
       <app-edit-input (saveField)="add($event)"></app-edit-input>
     </mat-tab>
+    <mat-tab label="Select">
+      <app-edit-select (saveField)="add($event)"></app-edit-select>
+    </mat-tab>
   </mat-tab-group>
 
-  <button mat-mini-fab (click)="isOpened = false">
+  <button mat-fab color="primary" (click)="isOpened = false">
     <mat-icon>close</mat-icon>
   </button>
 </div>
 
 <ng-template #editPanel>
   <div fxLayout="row" class="pad-s">
-    <button mat-mini-fab (click)="isOpened = true">
+    <button mat-fab color="primary" (click)="isOpened = true">
       <mat-icon>add</mat-icon>
     </button>
   </div>

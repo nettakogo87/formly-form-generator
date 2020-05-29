@@ -1,19 +1,19 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { EditInputDialogComponent } from '../edit-input-dialog/edit-input-dialog.component';
 
 @Component({
-  selector: 'app-edit-input-dialog',
-  templateUrl: './edit-input-dialog.component.html',
-  styleUrls: ['./edit-input-dialog.component.scss'],
+  selector: 'app-edit-select-dialog',
+  templateUrl: './edit-select-dialog.component.html',
+  styleUrls: ['./edit-select-dialog.component.scss'],
 })
-export class EditInputDialogComponent {
+export class EditSelectDialogComponent {
 
   public field: FormlyFieldConfig;
 
   constructor(
-    public dialogRef: MatDialogRef<EditInputDialogComponent>,
+    public dialogRef: MatDialogRef<EditSelectDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { field: FormlyFieldConfig }) {
     this.field = this.data.field;
   }

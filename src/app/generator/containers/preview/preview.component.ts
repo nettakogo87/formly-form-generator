@@ -32,6 +32,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
         takeUntil(this._destroyed$),
       )
       .subscribe((fields: FormlyFieldConfig[]) => {
+        this.form = new FormGroup({});
         this.fields = fields;
         if (this.options.resetModel) {
           this.options.resetModel();
