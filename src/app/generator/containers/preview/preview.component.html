@@ -1,10 +1,28 @@
-<div fxLayout="row" class="pad-b-l">
-  <button
-    *ngIf="fields.length > 0"
-    type="button"
-    mat-raised-button color="warn" (click)="clear()">
-    Clear Preview
-  </button>
+<div fxLayout="row" class="pad-b-l" fxLayoutGap="20px">
+  <div fxLayout="column">
+    <button
+      *ngIf="fields.length > 0"
+      type="button"
+      mat-raised-button color="warn" (click)="clear()">
+      Clear Preview
+    </button>
+  </div>
+  <div fxLayout="column">
+    <button
+      *ngIf="fields.length > 0"
+      type="button"
+      mat-raised-button color="primary" (click)="fillForm()">
+      Fill Form
+    </button>
+  </div>
+  <div fxLayout="column">
+    <button
+      *ngIf="fields.length > 0"
+      type="button"
+      mat-raised-button color="accent" (click)="clearFormData()">
+      Clear Form Data
+    </button>
+  </div>
 </div>
 
 <div fxLayout="row">

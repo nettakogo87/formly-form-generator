@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { FieldsService } from '../../services/fields.service';
+import { FormDataService } from '../../services/form-data.service';
 
 @Component({
   selector: 'app-preview',
@@ -22,17 +23,31 @@ export class PreviewComponent implements OnInit, OnDestroy {
   public fields: FormlyFieldConfig[] = [];
   public options: FormlyFormOptions = {};
 
+  private _formData: any
+
   private _destroyed$ = new Subject();
 
-  constructor(private _fieldService: FieldsService, private readonly _cdr: ChangeDetectorRef) {}
+  constructor(
+    private _fieldService: FieldsService,
+    private _formDataService: FormDataService,
+    private readonly _cdr: ChangeDetectorRef,
+  ) {}
 
   public ngOnInit(): void {
+    this._formDataService.data$
+      .pipe(
+        takeUntil(this._destroyed$),
+      )
+      .subscribe((formData: any) => {
+        this._formData = formData;
+      });
+
     this._fieldService.fields$
       .pipe(
         takeUntil(this._destroyed$),
       )
       .subscribe((fields: FormlyFieldConfig[]) => {
-        this.form = new FormGroup({});
+        this.clearFormData();
         this.fields = fields;
         if (this.options.resetModel) {
           this.options.resetModel();
@@ -47,11 +62,23 @@ export class PreviewComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
+    if (this.form.valid) {
+      this._formDataService.setFormData(this.form.value);
+    }
+  }
 
+  public fillForm(): void {
+    this.model = this._formData;
+    this._cdr.detectChanges();
   }
 
   public clear(): void {
     this.fields = [];
     this._cdr.detectChanges();
+  }
+
+  public clearFormData(): void {
+    this.form = new FormGroup({});
+    this.model = {};
   }
 }
