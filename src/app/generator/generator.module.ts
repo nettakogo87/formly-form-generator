@@ -8,6 +8,7 @@ import { CodePanComponent } from './containers/code-pan/code-pan.component';
 import { EditInputComponent } from './components/edit-input/edit-input.component';
 import { AddFieldComponent } from './components/add-field/add-field.component';
 import { FieldComponent } from './components/field/field.component';
+import { EditInputDialogComponent } from './containers/edit-input-dialog/edit-input-dialog.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FieldComponent } from './components/field/field.component';
     AddFieldComponent,
     FieldComponent,
     EditInputComponent,
+    EditInputDialogComponent,
   ],
   imports: [
     GeneratorRoutingModule,

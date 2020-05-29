@@ -1,6 +1,6 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -15,11 +15,7 @@ export class EditInputComponent implements OnInit {
   public form: FormGroup;
 
   @Input()
-  public set field(field: FormlyFieldConfig) {
-    if (field) {
-      this.form.setValue(this._fromFormlyFieldConfig(field));
-    }
-  }
+  public field: FormlyFieldConfig;
 
   @Output()
   public saveField = new EventEmitter<FormlyFieldConfig>();
@@ -32,6 +28,9 @@ export class EditInputComponent implements OnInit {
       label: ['', Validators.required],
       required: [false],
     });
+    if (this.field) {
+      this.form.setValue(this._fromFormlyFieldConfig(this.field));
+    }
   }
 
   public submit(): void {

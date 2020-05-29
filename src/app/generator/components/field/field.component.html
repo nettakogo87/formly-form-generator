@@ -1,12 +1,16 @@
 <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="pad-b-s">
-  <!--space-between-->
   <div fxLayout="column">
     <span>Key: {{field?.key}}</span>
     <span>Label: {{field?.templateOptions?.label}}</span>
   </div>
   <div fxLayout="column">
-    <button mat-mini-fab (click)="remove(field)">
-      <mat-icon>remove</mat-icon>
-    </button>
+    <div fxLayout="row">
+      <button mat-mini-fab (click)="openEdit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-mini-fab (click)="remove(field)">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

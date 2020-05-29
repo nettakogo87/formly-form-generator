@@ -11,7 +11,11 @@
     <div fxLayout="column" fxFlex>
       <mat-list *ngFor="let field of fields">
         <mat-list-item>
-          <app-field [field]="field" (removeField)="removeField($event)" fxFlex>
+          <app-field
+            [field]="field"
+            (editField)="editField($event)"
+            (removeField)="removeField($event)"
+            fxFlex>
           </app-field>
         </mat-list-item>
         <mat-divider color="primary"></mat-divider>

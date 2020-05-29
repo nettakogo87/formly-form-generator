@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
 @Component({
@@ -7,9 +7,9 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['./add-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddFieldComponent implements OnInit {
+export class AddFieldComponent {
 
-  public isEditPanelOpen = false;
+  public isOpened = false;
 
   @Output()
   public addField = new EventEmitter();
@@ -17,11 +17,8 @@ export class AddFieldComponent implements OnInit {
   constructor() {
   }
 
-  public ngOnInit(): void {
-  }
-
   public add(field: FormlyFieldConfig): void {
     this.addField.emit(field);
-    this.isEditPanelOpen = false;
+    this.isOpened = false;
   }
 }

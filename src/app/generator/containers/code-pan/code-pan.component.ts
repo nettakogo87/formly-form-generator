@@ -28,6 +28,13 @@ export class CodePanComponent {
     this._fieldService.setFields(fields);
   }
 
+  public editField(field: FormlyFieldConfig): void {
+    const fields = this._fieldService.getFields();
+    const editedFieldIndex = fields.findIndex(x => x.key === field.key);
+    fields.splice(editedFieldIndex, 1, field);
+    this._fieldService.setFields(fields);
+  }
+
   public removeField(field: FormlyFieldConfig): void {
     const fields = this._fieldService.getFields();
     const removedFieldIndex = fields.findIndex(x => x.key === field.key);
