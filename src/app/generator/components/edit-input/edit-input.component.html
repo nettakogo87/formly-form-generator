@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="submit()" fxLayout="column">
+  <div fxLayout="row" class="pad-s">
+    <mat-form-field>
+      <mat-label>Key</mat-label>
+      <input matInput formControlName="key">
+      <mat-error>This is Required Filed</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" class="pad-s">
+    <mat-form-field>
+      <mat-label>Label</mat-label>
+      <input matInput formControlName="label">
+      <mat-error>This is Required Filed</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" class="pad-s">
+    <mat-checkbox formControlName="required">
+      Required
+    </mat-checkbox>
+  </div>
+  <div fxLayout="row" class="pad-s">
+    <button type="submit" mat-mini-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</form>

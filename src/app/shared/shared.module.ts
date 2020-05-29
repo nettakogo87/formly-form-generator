@@ -24,7 +24,11 @@ import { AngularSplitModule } from 'angular-split';
     FlexLayoutModule,
 
     // Formly
-    FormlyModule.forChild(),
+    FormlyModule.forChild({
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+      ],
+    }),
     FormlyMaterialModule,
 
     // Material

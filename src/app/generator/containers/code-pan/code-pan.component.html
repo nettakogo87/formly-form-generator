@@ -1,1 +1,29 @@
-<p>code-pan works!</p>
+<ng-container *ngIf="fields$ | async as fields">
+  <div fxLayout="row" class="pad-b-l">
+    <button
+      *ngIf="fields.length > 0"
+      type="button"
+      mat-raised-button color="warn" (click)="clear()">
+      Clear Preview
+    </button>
+  </div>
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex>
+      <mat-list *ngFor="let field of fields">
+        <mat-list-item>
+          <app-field [field]="field" (removeField)="removeField($event)" fxFlex>
+          </app-field>
+        </mat-list-item>
+        <mat-divider color="primary"></mat-divider>
+      </mat-list>
+    </div>
+  </div>
+</ng-container>
+
+<div fxLayout="row">
+  <app-add-field (addField)="addField($event)">
+  </app-add-field>
+</div>
+
+
+
