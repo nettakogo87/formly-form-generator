@@ -28,6 +28,8 @@ export class EditInputComponent implements OnInit {
       label: ['', Validators.required],
       required: [false],
       className: [''],
+      expressionOption: [''],
+      expressionValue: [''],
     });
     if (this.field) {
       this.form.setValue(this._fromFormlyFieldConfig(this.field));
@@ -42,16 +44,22 @@ export class EditInputComponent implements OnInit {
   }
 
   private _fromFormlyFieldConfig(field: FormlyFieldConfig): any {
-    return {
+    const form: any = {
       key: field.key,
       label: field.templateOptions && field.templateOptions.label,
       required: (field.templateOptions && field.templateOptions.required) || false,
       className: field.className || '',
     };
+    const expressionKeys = Object.keys(field.expressionProperties);
+    if (expressionKeys.length > 0) {
+      form.expressionOption = expressionKeys[0] || '';
+      form.expressionValue = field.expressionProperties[form.expressionOption] || '';
+    }
+    return form;
   }
 
   private _toFormlyFieldConfig(value: any): FormlyFieldConfig {
-    return {
+    const field: FormlyFieldConfig = {
       key: value.key,
       type: 'input',
       className: value.className,
@@ -60,5 +68,9 @@ export class EditInputComponent implements OnInit {
         required: value.required,
       },
     };
+    const expressionProperties: any = {};
+    expressionProperties[value.expressionOption] = value.expressionValue;
+    field.expressionProperties = expressionProperties;
+    return field;
   }
 }
