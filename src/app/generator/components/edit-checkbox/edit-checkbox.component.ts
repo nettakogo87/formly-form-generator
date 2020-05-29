@@ -23,6 +23,7 @@ export class EditCheckboxComponent implements OnInit {
     this.form = this._fb.group({
       key: ['', Validators.required],
       label: ['', Validators.required],
+      className: [''],
     });
     if (this.field) {
       this.form.setValue(this._fromFormlyFieldConfig(this.field));
@@ -40,6 +41,7 @@ export class EditCheckboxComponent implements OnInit {
     return {
       key: field.key,
       label: field.templateOptions && field.templateOptions.label,
+      className: field.className || '',
     };
   }
 
@@ -47,6 +49,7 @@ export class EditCheckboxComponent implements OnInit {
     return {
       key: value.key,
       type: 'checkbox',
+      className: value.className,
       templateOptions: {
         label: value.label,
       },

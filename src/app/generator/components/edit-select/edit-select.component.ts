@@ -35,6 +35,7 @@ export class EditSelectComponent implements OnInit {
           value: ['', Validators.required],
         }),
       ]),
+      className: [''],
     });
     if (this.field) {
       this.form.setValue(this._fromFormlyFieldConfig(this.field));
@@ -65,8 +66,9 @@ export class EditSelectComponent implements OnInit {
       key: field.key,
       label: field.templateOptions && field.templateOptions.label,
       multiple: field.templateOptions && field.templateOptions.multiple,
-      required: field.templateOptions && field.templateOptions.required,
+      required: (field.templateOptions && field.templateOptions.required) || false,
       options: field.templateOptions && field.templateOptions.options,
+      className: field.className || '',
     };
   }
 
@@ -74,6 +76,7 @@ export class EditSelectComponent implements OnInit {
     return {
       key: value.key,
       type: 'select',
+      className: value.className,
       templateOptions: {
         label: value.label,
         multiple: value.multiple,

@@ -27,6 +27,7 @@ export class EditInputComponent implements OnInit {
       key: ['', Validators.required],
       label: ['', Validators.required],
       required: [false],
+      className: [''],
     });
     if (this.field) {
       this.form.setValue(this._fromFormlyFieldConfig(this.field));
@@ -44,7 +45,8 @@ export class EditInputComponent implements OnInit {
     return {
       key: field.key,
       label: field.templateOptions && field.templateOptions.label,
-      required: field.templateOptions && field.templateOptions.required,
+      required: (field.templateOptions && field.templateOptions.required) || false,
+      className: field.className || '',
     };
   }
 
@@ -52,6 +54,7 @@ export class EditInputComponent implements OnInit {
     return {
       key: value.key,
       type: 'input',
+      className: value.className,
       templateOptions: {
         label: value.label,
         required: value.required,
