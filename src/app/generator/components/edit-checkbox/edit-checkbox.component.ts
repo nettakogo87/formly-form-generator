@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormGroup } from '@angular/forms';
+
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+
+import { checkboxFieldModel } from '../../models/checkbox-field.model';
 
 @Component({
   selector: 'app-edit-checkbox',
@@ -8,25 +11,24 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['./edit-checkbox.component.scss'],
 })
 export class EditCheckboxComponent implements OnInit {
-
-  public form: FormGroup;
-
   @Input()
   public field: FormlyFieldConfig;
 
   @Output()
-  public saveField = new EventEmitter<FormlyFieldConfig>();
+  public readonly saveField = new EventEmitter<FormlyFieldConfig>();
 
-  constructor(private _fb: FormBuilder) { }
+  public form = new FormGroup({});
+
+  public fields = checkboxFieldModel;
+
+  public model = {};
+  public options: FormlyFormOptions = {};
+
+  constructor() { }
 
   public ngOnInit(): void {
-    this.form = this._fb.group({
-      key: ['', Validators.required],
-      label: ['', Validators.required],
-      className: [''],
-    });
     if (this.field) {
-      this.form.setValue(this._fromFormlyFieldConfig(this.field));
+      this.model = this._fromFormlyFieldConfig(this.field);
     }
   }
 
