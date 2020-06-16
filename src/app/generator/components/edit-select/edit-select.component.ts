@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormGroup } from '@angular/forms';
+
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+
+import { selectFieldModel } from '../../models/select-field.model';
 
 @Component({
   selector: 'app-edit-select',
@@ -9,36 +12,24 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 })
 export class EditSelectComponent implements OnInit {
 
-  public form: FormGroup;
-
   @Input()
   public field: FormlyFieldConfig;
 
   @Output()
-  public saveField = new EventEmitter<FormlyFieldConfig>();
+  public readonly saveField = new EventEmitter<FormlyFieldConfig>();
 
-  constructor(private _fb: FormBuilder) { }
+  public form = new FormGroup({});
 
-  get options() {
-    return this.form.get('options') as FormArray;
-  }
+  public fields = selectFieldModel;
+
+  public model = {};
+  public options: FormlyFormOptions = {};
+
+  constructor() { }
 
   public ngOnInit(): void {
-    this.form = this._fb.group({
-      key: ['', Validators.required],
-      label: ['', Validators.required],
-      multiple: [false],
-      required: [false],
-      options: this._fb.array([
-        this._fb.group({
-          label: ['', Validators.required],
-          value: ['', Validators.required],
-        }),
-      ]),
-      className: [''],
-    });
     if (this.field) {
-      this.form.setValue(this._fromFormlyFieldConfig(this.field));
+      this.model = this._fromFormlyFieldConfig(this.field);
     }
   }
 
@@ -49,26 +40,14 @@ export class EditSelectComponent implements OnInit {
     }
   }
 
-  public addOption(): void {
-    this.options.push(this._fb.group({
-      label: ['', Validators.required],
-      value: ['', Validators.required],
-    }));
-  }
-
   private _fromFormlyFieldConfig(field: FormlyFieldConfig): any {
-    const options = field.templateOptions.options as any[];
-    for (let i = 1; i < options.length; i++) {
-      this.addOption();
-    }
-
     return {
       key: field.key,
       label: field.templateOptions && field.templateOptions.label,
       multiple: field.templateOptions && field.templateOptions.multiple,
       required: (field.templateOptions && field.templateOptions.required) || false,
-      options: field.templateOptions && field.templateOptions.options,
       className: field.className || '',
+      options: field.templateOptions && field.templateOptions.options,
     };
   }
 

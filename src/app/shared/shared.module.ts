@@ -14,10 +14,11 @@ import { AngularSplitModule } from 'angular-split';
 
 import { WrapperPanelComponent } from './components/wrapper-panel/wrapper-panel.component';
 import { WrapperGeneratorFieldComponent } from './components/wrapper-generator-field/wrapper-generator-field.component';
+import { RepeatTypeComponent } from './components/repeat-type/repeat-type.component';
 
 
 @NgModule({
-  declarations: [WrapperPanelComponent, WrapperGeneratorFieldComponent],
+  declarations: [WrapperPanelComponent, WrapperGeneratorFieldComponent, RepeatTypeComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,6 +35,9 @@ import { WrapperGeneratorFieldComponent } from './components/wrapper-generator-f
       wrappers: [
         { name: 'panel', component: WrapperPanelComponent },
         { name: 'generator-field', component: WrapperGeneratorFieldComponent },
+      ],
+      types: [
+        { name: 'repeat', component: RepeatTypeComponent },
       ],
     }),
     FormlyMaterialModule,

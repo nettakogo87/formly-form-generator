@@ -1,0 +1,11 @@
+<div fxLayout="column">
+  <div *ngFor="let field of field.fieldGroup; let i = index">
+    <formly-field [field]="field"></formly-field>
+    <button type="button" mat-icon-button color="warn" (click)="remove(i)">
+      <mat-icon>{{ to.removeText }}</mat-icon>
+    </button>
+  </div>
+  <button type="button" mat-icon-button color="warn" (click)="add()">
+    <mat-icon>{{ to.addText }}</mat-icon>
+  </button>
+</div>

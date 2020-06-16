@@ -1,53 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="submit()" fxLayout="column">
-  <div fxLayout="row" class="pad-s">
-    <mat-form-field>
-      <mat-label>Key</mat-label>
-      <input matInput formControlName="key">
-      <mat-error>This is Required Filed</mat-error>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" class="pad-s">
-    <mat-form-field>
-      <mat-label>Label</mat-label>
-      <input matInput formControlName="label">
-      <mat-error>This is Required Filed</mat-error>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" class="pad-s">
-    <mat-checkbox formControlName="multiple">
-      Multiple
-    </mat-checkbox>
-    <mat-checkbox formControlName="required">
-      Required
-    </mat-checkbox>
-  </div>
-  <div fxLayout="row" class="pad-s" formArrayName="options">
-    <div fxLayout="column">
-      <div *ngFor="let option of options.controls; let i = index">
-        <div [formGroupName]="i">
-          <mat-form-field>
-            <mat-label>Label for {{i}}</mat-label>
-            <input matInput [formControl]="option.get('label')">
-            <mat-error>This is Required Filed</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Value for {{i}}</mat-label>
-            <input matInput [formControl]="option.get('value')">
-            <mat-error>This is Required Filed</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <button type="button" mat-icon-button color="warn" (click)="addOption()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </div>
-  <div fxLayout="row" class="pad-s">
-    <mat-form-field>
-      <mat-label>Custom class</mat-label>
-      <input matInput formControlName="className">
-    </mat-form-field>
-  </div>
+  <formly-form
+    [model]="model"
+    [fields]="fields"
+    [options]="options"
+    [form]="form">
+  </formly-form>
   <div fxLayout="row" class="pad-s">
     <button type="submit" color="warn" mat-raised-button>
       save select
