@@ -1,7 +1,9 @@
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { inputFieldModel } from '../../models/input-field.model';
 
 
 @Component({
@@ -12,27 +14,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditInputComponent implements OnInit {
 
-  public form: FormGroup;
-
   @Input()
   public field: FormlyFieldConfig;
 
   @Output()
-  public saveField = new EventEmitter<FormlyFieldConfig>();
+  public readonly saveField = new EventEmitter<FormlyFieldConfig>();
 
-  constructor(private _fb: FormBuilder) { }
+  public form = new FormGroup({});
+
+  public fields = inputFieldModel;
+
+  public model = {};
+  public options: FormlyFormOptions = {};
+
+  constructor() { }
 
   public ngOnInit(): void {
-    this.form = this._fb.group({
-      key: ['', Validators.required],
-      label: ['', Validators.required],
-      required: [false],
-      className: [''],
-      expressionOption: [''],
-      expressionValue: [''],
-    });
     if (this.field) {
-      this.form.setValue(this._fromFormlyFieldConfig(this.field));
+      this.model = this._fromFormlyFieldConfig(this.field);
     }
   }
 
@@ -50,11 +49,11 @@ export class EditInputComponent implements OnInit {
       required: (field.templateOptions && field.templateOptions.required) || false,
       className: field.className || '',
     };
-    const expressionKeys = Object.keys(field.expressionProperties);
-    if (expressionKeys.length > 0) {
-      form.expressionOption = expressionKeys[0] || '';
-      form.expressionValue = field.expressionProperties[form.expressionOption] || '';
-    }
+    // const expressionKeys = Object.keys(field.expressionProperties);
+    // if (expressionKeys.length > 0) {
+    //   form.expressionOption = expressionKeys[0] || '';
+    //   form.expressionValue = field.expressionProperties[form.expressionOption] || '';
+    // }
     return form;
   }
 
@@ -68,9 +67,9 @@ export class EditInputComponent implements OnInit {
         required: value.required,
       },
     };
-    const expressionProperties: any = {};
-    expressionProperties[value.expressionOption] = value.expressionValue;
-    field.expressionProperties = expressionProperties;
+    // const expressionProperties: any = {};
+    // expressionProperties[value.expressionOption] = value.expressionValue;
+    // field.expressionProperties = expressionProperties;
     return field;
   }
 }

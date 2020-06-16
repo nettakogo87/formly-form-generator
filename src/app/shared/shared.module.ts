@@ -13,10 +13,11 @@ import { MaterialModule } from './material.module';
 import { AngularSplitModule } from 'angular-split';
 
 import { WrapperPanelComponent } from './components/wrapper-panel/wrapper-panel.component';
+import { WrapperGeneratorFieldComponent } from './components/wrapper-generator-field/wrapper-generator-field.component';
 
 
 @NgModule({
-  declarations: [WrapperPanelComponent],
+  declarations: [WrapperPanelComponent, WrapperGeneratorFieldComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -32,6 +33,7 @@ import { WrapperPanelComponent } from './components/wrapper-panel/wrapper-panel.
       ],
       wrappers: [
         { name: 'panel', component: WrapperPanelComponent },
+        { name: 'generator-field', component: WrapperGeneratorFieldComponent },
       ],
     }),
     FormlyMaterialModule,

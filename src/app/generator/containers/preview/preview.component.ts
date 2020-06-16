@@ -23,7 +23,7 @@ export class PreviewComponent implements OnInit, OnDestroy {
   public fields: FormlyFieldConfig[] = [];
   public options: FormlyFormOptions = {};
 
-  private _formData: any
+  private _formData: any;
 
   private _destroyed$ = new Subject();
 
