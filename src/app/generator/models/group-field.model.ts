@@ -1,6 +1,6 @@
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
-export const selectFieldModel: FormlyFieldConfig[] = [
+export const groupFieldModel: FormlyFieldConfig[] = [
   {
     key: 'key',
     type: 'input',
@@ -20,22 +20,6 @@ export const selectFieldModel: FormlyFieldConfig[] = [
     wrappers: ['generator-field', 'form-field'],
   },
   {
-    key: 'required',
-    type: 'checkbox',
-    templateOptions: {
-      label: 'Required',
-    },
-    wrappers: ['generator-field', 'form-field'],
-  },
-  {
-    key: 'multiple',
-    type: 'checkbox',
-    templateOptions: {
-      label: 'Multiple',
-    },
-    wrappers: ['generator-field', 'form-field'],
-  },
-  {
     key: 'className',
     type: 'input',
     templateOptions: {
@@ -44,32 +28,26 @@ export const selectFieldModel: FormlyFieldConfig[] = [
     wrappers: ['generator-field', 'form-field'],
   },
   {
-    key: 'options',
+    key: 'wrappers',
     type: 'repeat',
     templateOptions: {
-      label: 'Options',
+      label: 'Wrappers',
       addText: 'add',
       removeText: 'remove',
     },
     wrappers: ['panel'],
     fieldArray: {
-      key: 'option',
+      key: 'group',
       fieldGroup: [
         {
-          key: 'label',
+          key: 'wrapper',
           type: 'input',
           templateOptions: {
-            label: 'Label',
-          },
-        },
-        {
-          key: 'value',
-          type: 'input',
-          templateOptions: {
-            label: 'Value',
+            label: 'Wrapper',
           },
         },
       ],
     },
   },
 ];
+

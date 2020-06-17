@@ -1,25 +1,21 @@
-<div *ngIf="isOpened; else editPanel">
+<div *ngIf="isOpened; else addButton">
   <mat-tab-group>
     <mat-tab label="Input">
-      <app-edit-input (saveField)="add($event)"></app-edit-input>
+      <app-edit-input (saveField)="add($event)" (cancel)="cancel()"></app-edit-input>
     </mat-tab>
     <mat-tab label="Select">
-      <app-edit-select (saveField)="add($event)"></app-edit-select>
+      <app-edit-select (saveField)="add($event)" (cancel)="cancel()"></app-edit-select>
     </mat-tab>
     <mat-tab label="Checkbox">
-      <app-edit-checkbox (saveField)="add($event)"></app-edit-checkbox>
+      <app-edit-checkbox (saveField)="add($event)" (cancel)="cancel()"></app-edit-checkbox>
     </mat-tab>
     <mat-tab label="Group">
-      <app-edit-group (saveField)="add($event)"></app-edit-group>
+      <app-edit-group (saveField)="add($event)" (cancel)="cancel()"></app-edit-group>
     </mat-tab>
   </mat-tab-group>
-
-  <button mat-fab color="primary" (click)="isOpened = false">
-    <mat-icon>close</mat-icon>
-  </button>
 </div>
 
-<ng-template #editPanel>
+<ng-template #addButton>
   <div fxLayout="row" class="pad-s">
     <button mat-fab color="primary" (click)="isOpened = true">
       <mat-icon>add</mat-icon>

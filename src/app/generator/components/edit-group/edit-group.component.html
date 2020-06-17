@@ -1,40 +1,16 @@
 <form [formGroup]="form" (ngSubmit)="submit()" fxLayout="column">
-  <div fxLayout="row" class="pad-s">
-    <mat-form-field>
-      <mat-label>Key</mat-label>
-      <input matInput formControlName="key">
-      <mat-error>This is Required Filed</mat-error>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" class="pad-s">
-    <mat-form-field>
-      <mat-label>Label</mat-label>
-      <input matInput formControlName="label">
-      <mat-error>This is Required Filed</mat-error>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" class="pad-s">
-    <mat-form-field>
-      <mat-label>Custom class</mat-label>
-      <input matInput formControlName="className">
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" class="pad-s" formArrayName="wrappers">
-    <div fxLayout="column">
-      <div *ngFor="let wrapper of wrappers.controls; let i = index">
-        <mat-form-field>
-          <mat-label>Wrapper {{i}}</mat-label>
-          <input matInput [formControlName]="i">
-        </mat-form-field>
-      </div>
-      <button type="button" mat-icon-button color="warn" (click)="addWrapper()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-  </div>
-  <div fxLayout="row" class="pad-s">
+  <formly-form
+    [model]="model"
+    [fields]="fields"
+    [options]="options"
+    [form]="form">
+  </formly-form>
+  <div fxLayout="row" class="pad-s" fxLayoutGap="10px">
     <button type="submit" color="warn" mat-raised-button>
       save group
+    </button>
+    <button type="button" color="accent" mat-raised-button (click)="cancelForm()">
+      cancel
     </button>
   </div>
 </form>

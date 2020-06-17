@@ -5,9 +5,12 @@
     [options]="options"
     [form]="form">
   </formly-form>
-  <div fxLayout="row" class="pad-s">
+  <div fxLayout="row" class="pad-s" fxLayoutGap="10px">
     <button type="submit" color="warn" mat-raised-button>
       save select
+    </button>
+    <button type="button" color="accent" mat-raised-button (click)="cancelForm()">
+      cancel
     </button>
   </div>
 </form>

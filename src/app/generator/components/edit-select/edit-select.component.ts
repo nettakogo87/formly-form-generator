@@ -19,9 +19,12 @@ export class EditSelectComponent implements OnInit {
   @Output()
   public readonly saveField = new EventEmitter<FormlyFieldConfig>();
 
+  @Output()
+  public readonly cancel = new EventEmitter<void>();
+
   public form = new FormGroup({});
 
-  public fields = selectFieldModel;
+  public fields = selectFieldModel.slice();
 
   public model = {};
   public options: FormlyFormOptions = {};
@@ -39,6 +42,10 @@ export class EditSelectComponent implements OnInit {
       const field = this._toFormlyFieldConfig(this.form.value);
       this.saveField.emit(field);
     }
+  }
+
+  public cancelForm(): void {
+    this.cancel.emit();
   }
 
   private _fromFormlyFieldConfig(field: FormlyFieldConfig): any {

@@ -5,30 +5,47 @@
   </button>
 </h1>
 <div mat-dialog-content>
-  <ng-container *ngIf="field.fieldGroup">
-    <div fxLayout="row">
-      <div fxLayout="column" fxFlex>
-        <app-edit-group [field]="field" (saveField)="saveFieldData($event)">
-
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex>
+      <div *ngIf="isEditOpened; else editButton">
+        <app-edit-group [field]="field" (saveField)="saveFieldData($event)" (cancel)="isEditOpened = false">
         </app-edit-group>
-        <mat-list *ngFor="let field of field.fieldGroup">
-          <mat-list-item>
-            <app-field
-              [field]="field"
-              (editField)="editField($event)"
-              (removeField)="removeField($event)"
-              fxFlex>
-            </app-field>
-          </mat-list-item>
-          <mat-divider color="primary"></mat-divider>
-        </mat-list>
       </div>
+      <ng-template #editButton>
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="pad-m">
+          <div fxLayout="column">
+            <app-view-field-data [field]="field"></app-view-field-data>
+          </div>
+          <button mat-mini-fab (click)="isEditOpened = true">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <ng-container *ngIf="!isEditOpened">
+    <ng-container *ngIf="field.fieldGroup">
+      <div fxLayout="row">
+        <div fxLayout="column" fxFlex>
+          <mat-list *ngFor="let field of field.fieldGroup">
+            <mat-list-item>
+              <app-field
+                [field]="field"
+                (editField)="editField($event)"
+                (removeField)="removeField($event)"
+                fxFlex>
+              </app-field>
+            </mat-list-item>
+            <mat-divider color="primary"></mat-divider>
+          </mat-list>
+        </div>
+      </div>
+    </ng-container>
+    <div fxLayout="row">
+      <app-add-field (addField)="addField($event)">
+      </app-add-field>
     </div>
   </ng-container>
-  <div fxLayout="row">
-    <app-add-field (addField)="addField($event)">
-    </app-add-field>
-  </div>
 </div>
 
 <div mat-dialog-actions>

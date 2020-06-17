@@ -21,4 +21,8 @@ export class AddFieldComponent {
     this.addField.emit(field);
     this.isOpened = false;
   }
+
+  public cancel(): void {
+    this.isOpened = false;
+  }
 }

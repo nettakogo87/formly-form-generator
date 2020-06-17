@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormGroup } from '@angular/forms';
+
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { groupFieldModel } from '../../models/group-field.model';
+
 
 @Component({
   selector: 'app-edit-group',
@@ -10,32 +13,29 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 })
 export class EditGroupComponent implements OnInit {
 
-  public form: FormGroup;
-
   @Input()
   public field: FormlyFieldConfig;
 
   @Output()
-  public saveField = new EventEmitter<FormlyFieldConfig>();
+  public readonly saveField = new EventEmitter<FormlyFieldConfig>();
 
-  constructor(private _fb: FormBuilder) { }
+  @Output()
+  public readonly cancel = new EventEmitter<void>();
 
-  public ngOnInit(): void {
-    this.form = this._fb.group({
-      key: ['', Validators.required],
-      label: ['', Validators.required],
-      className: [''],
-      wrappers: this._fb.array([
-        this._fb.control(''),
-      ]),
-    });
-    if (this.field) {
-      this.form.setValue(this._fromFormlyFieldConfig(this.field));
-    }
+  public form = new FormGroup({});
+
+  public fields = groupFieldModel.slice();
+
+  public model = {};
+  public options: FormlyFormOptions = {};
+
+  constructor() {
   }
 
-  public get wrappers() {
-    return this.form.get('wrappers') as FormArray;
+  public ngOnInit(): void {
+    if (this.field) {
+      this.model = this._fromFormlyFieldConfig(this.field);
+    }
   }
 
   public submit(): void {
@@ -45,21 +45,18 @@ export class EditGroupComponent implements OnInit {
     }
   }
 
-  public addWrapper(): void {
-    this.wrappers.push(this._fb.control(''));
+  public cancelForm(): void {
+    this.cancel.emit();
   }
 
   private _fromFormlyFieldConfig(field: FormlyFieldConfig): any {
-    const wrappers = field.wrappers as any[];
-    for (let i = 1; i < wrappers.length; i++) {
-      this.addWrapper();
-    }
-
     return {
       key: field.key,
       label: field.templateOptions && field.templateOptions.label,
       className: field.className || '',
-      wrappers: field.wrappers,
+      wrappers: field.wrappers.map(x => {
+        return { 'wrapper': x };
+      }),
     };
   }
 
@@ -67,7 +64,7 @@ export class EditGroupComponent implements OnInit {
     return {
       key: value.key,
       className: value.className,
-      wrappers: value.wrappers,
+      wrappers: value.wrappers.map(x => x.wrapper),
       fieldGroup: [{}],
       templateOptions: {
         label: value.label,

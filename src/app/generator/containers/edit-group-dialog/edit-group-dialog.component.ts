@@ -11,6 +11,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 export class EditGroupDialogComponent {
 
   public field: FormlyFieldConfig;
+  public isEditOpened = false;
 
   constructor(
     public dialogRef: MatDialogRef<EditGroupDialogComponent>,
@@ -22,6 +23,7 @@ export class EditGroupDialogComponent {
     const fieldGroup = this.field.fieldGroup;
     this.field = field;
     this.field.fieldGroup = fieldGroup;
+    this.isEditOpened = false;
   }
 
 
