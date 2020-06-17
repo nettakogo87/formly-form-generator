@@ -8,6 +8,9 @@
   <ng-container *ngIf="field.fieldGroup">
     <div fxLayout="row">
       <div fxLayout="column" fxFlex>
+        <app-edit-group [field]="field" (saveField)="saveFieldData($event)">
+
+        </app-edit-group>
         <mat-list *ngFor="let field of field.fieldGroup">
           <mat-list-item>
             <app-field

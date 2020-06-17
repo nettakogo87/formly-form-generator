@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
@@ -9,6 +9,7 @@ import { checkboxFieldModel } from '../../models/checkbox-field.model';
   selector: 'app-edit-checkbox',
   templateUrl: './edit-checkbox.component.html',
   styleUrls: ['./edit-checkbox.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditCheckboxComponent implements OnInit {
   @Input()

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
@@ -6,6 +6,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   selector: 'app-edit-group',
   templateUrl: './edit-group.component.html',
   styleUrls: ['./edit-group.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditGroupComponent implements OnInit {
 

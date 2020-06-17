@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 
@@ -6,6 +6,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   selector: 'app-edit-group-dialog',
   templateUrl: './edit-group-dialog.component.html',
   styleUrls: ['./edit-group-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditGroupDialogComponent {
 
@@ -16,6 +17,13 @@ export class EditGroupDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { field: FormlyFieldConfig }) {
     this.field = this.data.field;
   }
+
+  public saveFieldData(field: FormlyFieldConfig): void {
+    const fieldGroup = this.field.fieldGroup;
+    this.field = field;
+    this.field.fieldGroup = fieldGroup;
+  }
+
 
   public addField(field: FormlyFieldConfig): void {
     this.field.fieldGroup.push(field);

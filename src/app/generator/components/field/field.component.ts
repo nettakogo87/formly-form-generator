@@ -20,10 +20,10 @@ export class FieldComponent implements OnDestroy {
   public field: FormlyFieldConfig;
 
   @Output()
-  public editField = new EventEmitter<FormlyFieldConfig>();
+  public readonly editField = new EventEmitter<FormlyFieldConfig>();
 
   @Output()
-  public removeField = new EventEmitter<FormlyFieldConfig>();
+  public readonly removeField = new EventEmitter<FormlyFieldConfig>();
 
   private _destroyed$ = new Subject();
 

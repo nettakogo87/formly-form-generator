@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { EditInputDialogComponent } from '../edit-input-dialog/edit-input-dialog.component';
@@ -7,6 +7,7 @@ import { EditInputDialogComponent } from '../edit-input-dialog/edit-input-dialog
   selector: 'app-edit-select-dialog',
   templateUrl: './edit-select-dialog.component.html',
   styleUrls: ['./edit-select-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditSelectDialogComponent {
 

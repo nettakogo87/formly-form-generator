@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
@@ -9,6 +9,7 @@ import { selectFieldModel } from '../../models/select-field.model';
   selector: 'app-edit-select',
   templateUrl: './edit-select.component.html',
   styleUrls: ['./edit-select.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditSelectComponent implements OnInit {
 

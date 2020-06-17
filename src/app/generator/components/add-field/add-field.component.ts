@@ -12,7 +12,7 @@ export class AddFieldComponent {
   public isOpened = false;
 
   @Output()
-  public addField = new EventEmitter();
+  public readonly addField = new EventEmitter();
 
   constructor() {
   }
