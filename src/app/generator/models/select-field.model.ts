@@ -44,6 +44,54 @@ export const selectFieldModel: FormlyFieldConfig[] = [
     wrappers: ['generator-field', 'form-field'],
   },
   {
+    key: 'external',
+    type: 'toggle',
+    templateOptions: {
+      label: 'External resource enabled',
+      description: 'Get options from external resource',
+    },
+    wrappers: ['generator-field', 'form-field'],
+  },
+  {
+    key: 'externalData',
+    templateOptions: {
+      label: 'External params',
+    },
+    hideExpression: ((model: any, formState: any, field?: FormlyFieldConfig) => {
+      return !field.parent.model.external;
+    }),
+    wrappers: ['panel'],
+    fieldGroup: [
+      {
+        key: 'resource',
+        type: 'input',
+        templateOptions: {
+          required: true,
+          label: 'Resource url',
+        },
+        wrappers: ['generator-field', 'form-field'],
+      },
+      {
+        key: 'labelProp',
+        type: 'input',
+        templateOptions: {
+          required: true,
+          label: 'Label Property Name',
+        },
+        wrappers: ['generator-field', 'form-field'],
+      },
+      {
+        key: 'valueProp',
+        type: 'input',
+        templateOptions: {
+          required: true,
+          label: 'Value Property Name',
+        },
+        wrappers: ['generator-field', 'form-field'],
+      },
+    ],
+  },
+  {
     key: 'options',
     type: 'repeat',
     templateOptions: {
@@ -52,6 +100,9 @@ export const selectFieldModel: FormlyFieldConfig[] = [
       removeText: 'remove',
     },
     wrappers: ['panel'],
+    hideExpression: ((model: any, formState: any, field?: FormlyFieldConfig) => {
+      return field.parent.model.external;
+    }),
     fieldArray: {
       key: 'option',
       fieldGroup: [

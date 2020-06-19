@@ -4,10 +4,12 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 
 import { MaterialModule } from './material.module';
 import { AngularSplitModule } from 'angular-split';
@@ -21,6 +23,7 @@ import { RepeatTypeComponent } from './components/repeat-type/repeat-type.compon
   declarations: [WrapperPanelComponent, WrapperGeneratorFieldComponent, RepeatTypeComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
 
@@ -41,6 +44,7 @@ import { RepeatTypeComponent } from './components/repeat-type/repeat-type.compon
       ],
     }),
     FormlyMaterialModule,
+    FormlyMatToggleModule,
 
     // Material
     MaterialModule,

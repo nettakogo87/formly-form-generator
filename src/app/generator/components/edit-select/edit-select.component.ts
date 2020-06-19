@@ -1,9 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 import { selectFieldModel } from '../../models/select-field.model';
+import { ExternalResourcesService } from '../../services/external-resources.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-select',
@@ -11,7 +14,7 @@ import { selectFieldModel } from '../../models/select-field.model';
   styleUrls: ['./edit-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditSelectComponent implements OnInit {
+export class EditSelectComponent implements OnInit, OnDestroy {
 
   @Input()
   public field: FormlyFieldConfig;
@@ -29,7 +32,10 @@ export class EditSelectComponent implements OnInit {
   public model = {};
   public options: FormlyFormOptions = {};
 
-  constructor() { }
+  private _destroyed$ = new Subject();
+
+  constructor(private _externalResources: ExternalResourcesService) {
+  }
 
   public ngOnInit(): void {
     if (this.field) {
@@ -37,10 +43,29 @@ export class EditSelectComponent implements OnInit {
     }
   }
 
+  public ngOnDestroy(): void {
+    this._destroyed$.next();
+    this._destroyed$.complete();
+  }
+
   public submit(): void {
     if (this.form.valid) {
-      const field = this._toFormlyFieldConfig(this.form.value);
-      this.saveField.emit(field);
+      if (this.form.value.external) {
+
+        this._externalResources.getOptions(this.form.value.externalData.resource)
+          .pipe(
+            takeUntil(this._destroyed$),
+          )
+          .subscribe((options: any []) => {
+            const formlyField = this._toFormlyFieldConfig(this.form.value, options);
+            this.saveField.emit(formlyField);
+          });
+
+      } else {
+        const formlyField = this._toFormlyFieldConfig(this.form.value, this.form.value.options);
+
+        this.saveField.emit(formlyField);
+      }
     }
   }
 
@@ -49,28 +74,60 @@ export class EditSelectComponent implements OnInit {
   }
 
   private _fromFormlyFieldConfig(field: FormlyFieldConfig): any {
-    return {
+    const model: any = {
       key: field.key,
-      label: field.templateOptions && field.templateOptions.label,
-      multiple: field.templateOptions && field.templateOptions.multiple,
       required: (field.templateOptions && field.templateOptions.required) || false,
       className: field.className || '',
-      options: field.templateOptions && field.templateOptions.options,
+      external: false,
+      externalData: {},
+      options: [],
     };
+    if (field.templateOptions) {
+      if (field.templateOptions.label) {
+        model.label = field.templateOptions.label;
+      }
+      if (field.templateOptions.multiple) {
+        model.multiple = field.templateOptions.multiple;
+      }
+      if (field.templateOptions.options) {
+        model.options = field.templateOptions.options;
+        if (field.templateOptions.resource) {
+          model.externalData.resource = field.templateOptions.resource;
+          model.external = true;
+        }
+      }
+      if (field.templateOptions.labelProp) {
+        model.externalData.labelProp = field.templateOptions.labelProp;
+        model.external = true;
+      }
+      if (field.templateOptions.labelProp) {
+        model.externalData.valueProp = field.templateOptions.valueProp;
+        model.external = true;
+      }
+    }
+
+    return model;
   }
 
-  private _toFormlyFieldConfig(value: any): FormlyFieldConfig {
-    return {
-      key: value.key,
+  private _toFormlyFieldConfig(value: any, options: any[]): FormlyFieldConfig {
+    const formlyField: FormlyFieldConfig = {
+      key: this.form.value.key,
       type: 'select',
-      className: value.className,
+      className: this.form.value.className,
       templateOptions: {
-        label: value.label,
-        multiple: value.multiple,
-        required: value.required,
-        options: value.options,
+        label: this.form.value.label,
+        multiple: this.form.value.multiple,
+        required: this.form.value.required,
+        options: options,
       },
     };
-  }
 
+    if (this.form.value.externalData) {
+      formlyField.templateOptions.resource = this.form.value.externalData.resource;
+      formlyField.templateOptions.labelProp = this.form.value.externalData.labelProp;
+      formlyField.templateOptions.valueProp = this.form.value.externalData.valueProp;
+    }
+
+    return formlyField;
+  }
 }
