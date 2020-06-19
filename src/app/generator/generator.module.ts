@@ -16,6 +16,8 @@ import { EditCheckboxDialogComponent } from './containers/edit-checkbox-dialog/e
 import { EditGroupComponent } from './components/edit-group/edit-group.component';
 import { EditGroupDialogComponent } from './containers/edit-group-dialog/edit-group-dialog.component';
 import { ViewFieldDataComponent } from './components/view-field-data/view-field-data.component';
+import { EditChipsComponent } from './components/edit-chips/edit-chips.component';
+import { EditChipsDialogComponent } from './containers/edit-chips-dialog/edit-chips-dialog.component';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { ViewFieldDataComponent } from './components/view-field-data/view-field-
     EditGroupComponent,
     EditGroupDialogComponent,
     ViewFieldDataComponent,
+    EditChipsComponent,
+    EditChipsDialogComponent,
   ],
   imports: [
     GeneratorRoutingModule,

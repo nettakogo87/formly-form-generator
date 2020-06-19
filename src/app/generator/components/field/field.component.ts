@@ -7,6 +7,7 @@ import { EditInputDialogComponent } from '../../containers/edit-input-dialog/edi
 import { EditSelectDialogComponent } from '../../containers/edit-select-dialog/edit-select-dialog.component';
 import { EditCheckboxDialogComponent } from '../../containers/edit-checkbox-dialog/edit-checkbox-dialog.component';
 import { EditGroupDialogComponent } from '../../containers/edit-group-dialog/edit-group-dialog.component';
+import { EditChipsDialogComponent } from '../../containers/edit-chips-dialog/edit-chips-dialog.component';
 
 @Component({
   selector: 'app-field',
@@ -69,6 +70,21 @@ export class FieldComponent implements OnDestroy {
         break;
       case 'checkbox':
         this.dialog.open(EditCheckboxDialogComponent, {
+          width: '500px',
+          data: { field: this.field },
+        })
+          .afterClosed()
+          .pipe(
+            takeUntil(this._destroyed$),
+          )
+          .subscribe((field: FormlyFieldConfig) => {
+            if (field) {
+              this.edit(field);
+            }
+          });
+        break;
+      case 'chips-autocomplete':
+        this.dialog.open(EditChipsDialogComponent, {
           width: '500px',
           data: { field: this.field },
         })

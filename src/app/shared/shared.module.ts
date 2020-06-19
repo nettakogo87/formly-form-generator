@@ -17,10 +17,16 @@ import { AngularSplitModule } from 'angular-split';
 import { WrapperPanelComponent } from './components/wrapper-panel/wrapper-panel.component';
 import { WrapperGeneratorFieldComponent } from './components/wrapper-generator-field/wrapper-generator-field.component';
 import { RepeatTypeComponent } from './components/repeat-type/repeat-type.component';
+import { FormlyChipsAutocompleteComponent } from './components/formly-chips-autocomplete/formly-chips-autocomplete.component';
 
 
 @NgModule({
-  declarations: [WrapperPanelComponent, WrapperGeneratorFieldComponent, RepeatTypeComponent],
+  declarations: [
+    WrapperPanelComponent,
+    WrapperGeneratorFieldComponent,
+    RepeatTypeComponent,
+    FormlyChipsAutocompleteComponent,
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -41,6 +47,7 @@ import { RepeatTypeComponent } from './components/repeat-type/repeat-type.compon
       ],
       types: [
         { name: 'repeat', component: RepeatTypeComponent },
+        { name: 'chips-autocomplete', component: FormlyChipsAutocompleteComponent, wrappers: ['form-field'] },
       ],
     }),
     FormlyMaterialModule,

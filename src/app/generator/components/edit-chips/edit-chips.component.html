@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="submit()" fxLayout="column">
+  <formly-form
+    [model]="model"
+    [fields]="fields"
+    [options]="options"
+    [form]="form">
+  </formly-form>
+  <div fxLayout="row" class="pad-s" fxLayoutGap="10px">
+    <button type="submit" color="warn" mat-raised-button>
+      save chips
+    </button>
+    <button type="button" color="accent" mat-raised-button (click)="cancelForm()">
+      cancel
+    </button>
+  </div>
+</form>

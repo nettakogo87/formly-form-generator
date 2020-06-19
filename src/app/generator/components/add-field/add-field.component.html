@@ -6,6 +6,9 @@
     <mat-tab label="Select">
       <app-edit-select (saveField)="add($event)" (cancel)="cancel()"></app-edit-select>
     </mat-tab>
+    <mat-tab label="Chips">
+      <app-edit-chips (saveField)="add($event)" (cancel)="cancel()"></app-edit-chips>
+    </mat-tab>
     <mat-tab label="Checkbox">
       <app-edit-checkbox (saveField)="add($event)" (cancel)="cancel()"></app-edit-checkbox>
     </mat-tab>
