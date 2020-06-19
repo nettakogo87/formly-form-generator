@@ -9,7 +9,7 @@
     selected="false"
     [removable]="removable"
     (removed)="removeByIndex(index)">
-    {{selectedItem.name}}
+    {{selectedItem[labelProp]}}
     <mat-icon matChipRemove>cancel</mat-icon>
   </mat-chip>
 
@@ -30,6 +30,6 @@
   <mat-option
     *ngFor="let filteredItem of filteredItems$ | async"
     [value]="filteredItem">
-    {{filteredItem.name}}
+    {{filteredItem[labelProp]}}
   </mat-option>
 </mat-autocomplete>

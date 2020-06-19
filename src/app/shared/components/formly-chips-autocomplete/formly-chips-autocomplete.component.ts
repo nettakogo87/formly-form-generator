@@ -48,22 +48,33 @@ export class FormlyChipsAutocompleteComponent extends FieldType implements OnIni
     return this.field.templateOptions.disabled;
   }
 
+  public get labelProp(): string {
+    return this.field.templateOptions.labelProp;
+  }
+
+  public get valueProp(): string {
+    return this.field.templateOptions.valueProp;
+  }
+
   public ngOnInit(): void {
     this.selectedItems$ = this.formControl.valueChanges;
 
     this.filteredItems$ = this.itemsCtrl.valueChanges
       .pipe(
         startWith(''),
-        switchMap(() => {
-          return this._externalResourcesService.getOptions(this.field.templateOptions.resource);
+        switchMap((value: string) => {
+          const params: any = {};
+          params[this.valueProp] = value;
+          return this._externalResourcesService.getOptions(this.field.templateOptions.resource, params);
         }),
-        map((options: any[]) => {
+        map((foundItems: any[]) => {
           if (this.formControl.value) {
-            return options.filter((option: any) => {
-              return !this.formControl.value.slice().find((x: any) => x.name === option.name);
+            return foundItems.filter((foundItem: any) => {
+              return !this.formControl.value.slice()
+                .find((selectedItem: any) => selectedItem[this.valueProp] === foundItem[this.valueProp]);
             });
           } else {
-            return options;
+            return foundItems;
           }
         }),
       );

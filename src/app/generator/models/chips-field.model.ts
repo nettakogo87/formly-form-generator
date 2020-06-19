@@ -28,4 +28,22 @@ export const chipsFieldModel: FormlyFieldConfig[] = [
     },
     wrappers: ['generator-field', 'form-field'],
   },
+  {
+    key: 'labelProp',
+    type: 'input',
+    templateOptions: {
+      required: true,
+      label: 'Label Property Name',
+    },
+    wrappers: ['generator-field', 'form-field'],
+  },
+  {
+    key: 'valueProp',
+    type: 'input',
+    templateOptions: {
+      required: true,
+      label: 'Value Property Name',
+    },
+    wrappers: ['generator-field', 'form-field'],
+  }
 ];

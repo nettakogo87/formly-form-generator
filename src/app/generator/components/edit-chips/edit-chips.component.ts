@@ -54,6 +54,12 @@ export class EditChipsComponent implements OnInit {
       label: field.templateOptions && field.templateOptions.label,
       resource: field.templateOptions.resource,
     };
+    if (field.templateOptions && field.templateOptions.labelProp) {
+      form.labelProp = field.templateOptions.labelProp;
+    }
+    if (field.templateOptions && field.templateOptions.valueProp) {
+      form.valueProp = field.templateOptions.valueProp;
+    }
     return form;
   }
 
@@ -67,6 +73,12 @@ export class EditChipsComponent implements OnInit {
         removable: true,
       },
     };
+    if (this.form.value.labelProp) {
+      field.templateOptions.labelProp = this.form.value.labelProp;
+    }
+    if (this.form.value.valueProp) {
+      field.templateOptions.valueProp = this.form.value.valueProp;
+    }
     return field;
   }
 

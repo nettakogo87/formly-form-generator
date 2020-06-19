@@ -12,8 +12,8 @@ export class ExternalResourcesService {
   constructor(private _http: HttpClient) {
   }
 
-  public getOptions(url: string): Observable<any[]> {
-    return this._http.get(url)
+  public getOptions(url: string, params: any = {}): Observable<any[]> {
+    return this._http.get(url, { params: params })
       .pipe(
         map(options => {
           return options as any[];
