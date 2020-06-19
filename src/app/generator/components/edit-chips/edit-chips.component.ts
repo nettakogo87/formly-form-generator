@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { FormGroup } from '@angular/forms';
 
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { ExternalResourcesService } from '../../services/external-resources.service';
+import { getChipsFieldModel } from '../../models/chips-field.model';
 
-import { chipsFieldModel } from '../../models/chips-field.model';
 
 @Component({
   selector: 'app-edit-chips',
@@ -24,14 +25,15 @@ export class EditChipsComponent implements OnInit {
 
   public form = new FormGroup({});
 
-  public fields = chipsFieldModel.slice();
+  public fields: FormlyFieldConfig[];
 
   public model = {};
   public options: FormlyFormOptions = {};
 
-  constructor() { }
+  constructor(private _externalResourcesService: ExternalResourcesService) { }
 
   public ngOnInit(): void {
+    this.fields = getChipsFieldModel(this._externalResourcesService);
     if (this.field) {
       this.model = this._fromFormlyFieldConfig(this.field);
     }
