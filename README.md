@@ -1,5 +1,7 @@
 # FormlyFormGenerator
 
+It's a simple form generator for angular inspired by [Angular Formly](https://formly.dev/) and has a purpose to understand formly features.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
