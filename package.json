@@ -1,5 +1,5 @@
 {
-  "name": "form-generator",
+  "name": "formly-form-generator",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

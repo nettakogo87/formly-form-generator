@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "form-generator": {
+    "formly-form-generator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/form-generator",
+            "outputPath": "dist/formly-form-generator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "form-generator:build"
+            "browserTarget": "formly-form-generator:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "form-generator:build:production"
+              "browserTarget": "formly-form-generator:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "form-generator:build"
+            "browserTarget": "formly-form-generator:build"
           }
         },
         "test": {
@@ -114,16 +114,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "form-generator:serve"
+            "devServerTarget": "formly-form-generator:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "form-generator:serve:production"
+              "devServerTarget": "formly-form-generator:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "form-generator"
+  "defaultProject": "formly-form-generator"
 }
