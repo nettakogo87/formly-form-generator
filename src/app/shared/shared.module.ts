@@ -49,6 +49,9 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
         { name: 'repeat', component: RepeatTypeComponent },
         { name: 'chips-autocomplete', component: FormlyChipsAutocompleteComponent, wrappers: ['form-field'] },
       ],
+      extras: {
+        immutable: true,
+      },
     }),
     FormlyMaterialModule,
     FormlyMatToggleModule,
