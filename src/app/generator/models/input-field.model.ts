@@ -8,7 +8,7 @@ export const inputFieldModel: FormlyFieldConfig[] = [
       label: 'Key',
       required: true,
     },
-    wrappers: ['generator-field', 'form-field'],
+    // wrappers: ['generator-field', 'form-field'],
   },
   {
     key: 'label',

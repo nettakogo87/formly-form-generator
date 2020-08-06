@@ -16,6 +16,7 @@ import { AngularSplitModule } from 'angular-split';
 
 import { WrapperPanelComponent } from './components/wrapper-panel/wrapper-panel.component';
 import { WrapperGeneratorFieldComponent } from './components/wrapper-generator-field/wrapper-generator-field.component';
+import { WrapperTestFieldComponent } from './components/wrapper-test-field/wrapper-test-field.component';
 import { RepeatTypeComponent } from './components/repeat-type/repeat-type.component';
 import { FormlyChipsAutocompleteComponent } from './components/formly-chips-autocomplete/formly-chips-autocomplete.component';
 
@@ -24,6 +25,7 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
   declarations: [
     WrapperPanelComponent,
     WrapperGeneratorFieldComponent,
+    WrapperTestFieldComponent,
     RepeatTypeComponent,
     FormlyChipsAutocompleteComponent,
   ],
@@ -43,7 +45,8 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
       ],
       wrappers: [
         { name: 'panel', component: WrapperPanelComponent },
-        { name: 'generator-field', component: WrapperGeneratorFieldComponent },
+        { name: 'generator-field', component: WrapperGeneratorFieldComponent, types: ['input'] },
+        { name: 'test-field', component: WrapperTestFieldComponent, types: ['mega-repeat'] },
       ],
       types: [
         { name: 'repeat', component: RepeatTypeComponent },
