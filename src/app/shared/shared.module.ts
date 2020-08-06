@@ -47,6 +47,15 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
       ],
       types: [
         { name: 'repeat', component: RepeatTypeComponent },
+        {
+          name: 'mega-repeat', extends: 'repeat', defaultOptions: {
+            name: 'MegaRepeat',
+            templateOptions: {
+              type: 'mega-repeat',
+              label: 'MegaRepeat',
+            },
+          },
+        },
         { name: 'chips-autocomplete', component: FormlyChipsAutocompleteComponent, wrappers: ['form-field'] },
       ],
       extras: {

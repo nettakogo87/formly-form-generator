@@ -1,4 +1,5 @@
 <div fxLayout="column">
+  <div>{{ to.label }}</div>
   <div *ngFor="let field of field.fieldGroup; let i = index">
     <formly-field [field]="field"></formly-field>
     <button type="button" mat-icon-button color="warn" (click)="remove(i)">

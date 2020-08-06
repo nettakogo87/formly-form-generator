@@ -93,7 +93,7 @@ export const selectFieldModel: FormlyFieldConfig[] = [
   },
   {
     key: 'options',
-    type: 'repeat',
+    type: 'mega-repeat',
     templateOptions: {
       label: 'Options',
       addText: 'add',
