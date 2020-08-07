@@ -86,6 +86,7 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
               return field.formControl.invalid && field.formControl.touched; // && field.formControl.dirty;
           }
         },
+        checkExpressionOn: 'changeDetectionCheck',
       },
     }),
     FormlyMaterialModule,
