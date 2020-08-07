@@ -1,35 +1,20 @@
-<mat-chip-list
-  #chipList
+<app-chips-autocomplete
+  class="pad-bottom-sm"
+  [labelProp]="labelProp"
+  [valueProp]="valueProp"
+  [resource]="this.field.templateOptions.resource"
+  [placeholder]="placeholder"
+  [formControl]="formControl"
+  [multi]="multi"
   [disabled]="disabled"
-  [required]="required">
+  [required]="required"
+  [removable]="removable"
+>
+</app-chips-autocomplete>
+<mat-error>
+  <ng-container *ngFor="let message of messages">
+    <span> {{ message }} </span>
+  </ng-container>
+</mat-error>
 
-  <mat-chip
-    *ngFor="let selectedItem of selectedItems$ | async; let index = index"
-    color="primary"
-    selected="false"
-    [removable]="removable"
-    (removed)="removeByIndex(index)">
-    {{selectedItem[labelProp]}}
-    <mat-icon matChipRemove>cancel</mat-icon>
-  </mat-chip>
-
-  <input
-    matInput
-    #itemsInput
-    [formControl]="itemsCtrl"
-    [placeholder]="placeholder"
-    [matAutocomplete]="autoItem"
-    [matChipInputFor]="chipList"
-    (focus)="itemsCtrl.setValue('')">
-
-</mat-chip-list>
-
-<mat-autocomplete
-  #autoItem="matAutocomplete"
-  (optionSelected)="select($event)">
-  <mat-option
-    *ngFor="let filteredItem of filteredItems$ | async"
-    [value]="filteredItem">
-    {{filteredItem[labelProp]}}
-  </mat-option>
-</mat-autocomplete>
+<!--[{{formControl.value | json}}]-->

@@ -1,0 +1,37 @@
+<mat-chip-list
+  #chipList
+  [disabled]="itemsCtrl.disabled"
+  [required]="required"
+>
+
+  <mat-chip
+    *ngFor="let selectedItem of value; let index = index"
+    color="primary"
+    selected="false"
+    [removable]="removable"
+    (removed)="removeByIndex(index)">
+    {{selectedItem[labelProp]}}
+    <mat-icon matChipRemove>cancel</mat-icon>
+  </mat-chip>
+
+  <input
+    matInput
+    #itemsInput
+    [formControl]="itemsCtrl"
+    [placeholder]="placeholder"
+    [matAutocomplete]="autoItem"
+    [matChipInputFor]="chipList"
+    [attr.aria-label]="placeholder"
+    (focus)="itemsCtrl.setValue('')">
+
+</mat-chip-list>
+
+<mat-autocomplete
+  #autoItem="matAutocomplete"
+  (optionSelected)="select($event)">
+  <mat-option
+    *ngFor="let filteredItem of filteredItems$ | async"
+    [value]="filteredItem">
+    {{filteredItem[labelProp]}}
+  </mat-option>
+</mat-autocomplete>

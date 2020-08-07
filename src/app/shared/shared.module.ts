@@ -19,6 +19,7 @@ import { WrapperGeneratorFieldComponent } from './components/wrapper-generator-f
 import { WrapperTestFieldComponent } from './components/wrapper-test-field/wrapper-test-field.component';
 import { RepeatTypeComponent } from './components/repeat-type/repeat-type.component';
 import { FormlyChipsAutocompleteComponent } from './components/formly-chips-autocomplete/formly-chips-autocomplete.component';
+import { ChipsAutocompleteComponent } from './components/chips-autocomplete/chips-autocomplete.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
     WrapperTestFieldComponent,
     RepeatTypeComponent,
     FormlyChipsAutocompleteComponent,
+    ChipsAutocompleteComponent,
   ],
   imports: [
     CommonModule,
