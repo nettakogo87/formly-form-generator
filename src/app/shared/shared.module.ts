@@ -7,7 +7,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { FormlyModule } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 
@@ -61,6 +61,20 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
         },
         { name: 'chips-autocomplete', component: FormlyChipsAutocompleteComponent, wrappers: ['form-field'] },
       ],
+      extensions: [{
+        name: 'test-ext', extension: {
+          prePopulate: (field: FormlyFieldConfig): void => {
+            if (field.templateOptions) {
+              field.templateOptions['additionalName'] = 'additionalName';
+            }
+          },
+          postPopulate: (field: FormlyFieldConfig): void => {
+            if (field.templateOptions) {
+              field.templateOptions['additionalName'] = '';
+            }
+          },
+        },
+      }],
       extras: {
         immutable: true,
       },
