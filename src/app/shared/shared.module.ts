@@ -7,7 +7,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
+import { FieldType, FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 
@@ -77,6 +77,15 @@ import { FormlyChipsAutocompleteComponent } from './components/formly-chips-auto
       }],
       extras: {
         immutable: true,
+        showError: (field: FieldType): boolean => {
+          switch (field.field.type) {
+            case 'select':
+              return true;
+              break;
+            default:
+              return field.formControl.invalid && field.formControl.touched; // && field.formControl.dirty;
+          }
+        },
       },
     }),
     FormlyMaterialModule,
